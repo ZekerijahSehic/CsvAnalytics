@@ -4,6 +4,18 @@ CSV Analytics is a Laravel + React single-page application that parses housing d
 
 ---
 
+<p align="center">
+  <img src="docs/images/img.png" alt="App Screenshot" width="600" />
+</p>
+
+## CSV Upload Requirements
+File format: Only files with the .csv extension are accepted.
+
+CSV structure: The file must contain the following headers in this exact order:
+```bash
+date,area,average_price,code,houses_sold,no_of_crimes,borough_flag
+```
+
 ## Tech Stack
 
 - **Backend**: Laravel 12 
@@ -81,7 +93,7 @@ DB_DATABASE=:memory:
 
 Run the test
 ```bash
-php artisan test
+php artisan docs
 ```
 
 
