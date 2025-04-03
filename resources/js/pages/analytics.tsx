@@ -59,40 +59,57 @@ const Analytics = () => {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className="max-w-2xl mx-auto p-6">
+            <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md space-y-4">
                 <div>
-                    <input type="file" accept=".csv" onChange={handleFileChange} />
+                    <input
+                        type="file"
+                        accept=".csv"
+                        onChange={handleFileChange}
+                        className="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4
+                        file:rounded-full file:border-0 file:text-sm file:font-semibold
+                        file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                    />
                 </div>
-                <div>
-                    <label>
-                        <input
-                            type="checkbox"
-                            checked={saveToDb}
-                            onChange={toggleSaveToDb}
-                        /> Save to database
-                    </label>
+
+                <div className="flex items-center space-x-2">
+                    <input
+                        type="checkbox"
+                        checked={saveToDb}
+                        onChange={toggleSaveToDb}
+                        id="saveToDb"
+                        className="accent-blue-600"
+                    />
+                    <label htmlFor="saveToDb" className="text-sm text-gray-800">Save to database</label>
                 </div>
+
                 <div>
-                    <button type="submit">Submit</button>
+                    <button
+                        type="submit"
+                        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                    >
+                        {loading ? 'Uploading...' : 'Submit'}
+                    </button>
                 </div>
             </form>
 
-            {loading && <p>Uploading...</p>}
-
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {error && <p className="mt-4 text-red-600 font-medium">{error}</p>}
 
             {stats && (
-                <div style={{ marginTop: '1rem' }}>
-                    <p><strong>Avg price:</strong> {stats.avg_price}</p>
-                    <p><strong>Total houses sold:</strong> {stats.total_houses_sold}</p>
-                    <p><strong>No of crimes in 2011:</strong> {stats.crimes_2011}</p>
-                    <p><strong>Avg price per year in London area</strong></p>
-                    <ul>
-                        {Object.entries(stats.london_avg_price_per_year).map(([year, price]) => (
-                            <li key={year}>{year}: {price}</li>
-                        ))}
-                    </ul>
+                <div className="mt-6 bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <h2 className="text-xl font-semibold text-gray-800">📊 Statistics</h2>
+                    <p><strong>Avg price:</strong> £{stats.avg_price.toLocaleString()}</p>
+                    <p><strong>Total houses sold:</strong> {stats.total_houses_sold.toLocaleString()}</p>
+                    <p><strong>No of crimes in 2011:</strong> {stats.crimes_2011.toLocaleString()}</p>
+
+                    <div>
+                        <p className="font-semibold mb-2">Avg price per year in London area:</p>
+                        <ul className="list-disc pl-5 text-gray-700">
+                            {Object.entries(stats.london_avg_price_per_year).map(([year, price]) => (
+                                <li key={year}>{year}: £{price.toLocaleString()}</li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             )}
         </div>
