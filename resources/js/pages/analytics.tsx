@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+type HousingStats = {
+    avg_price: number;
+    total_houses_sold: number;
+    crimes_2011: number;
+    london_avg_price_per_year: Record<string, number>;
+};
+
 const Analytics = () => {
     const [file, setFile] = useState<File | null>(null);
     const [saveToDb, setSaveToDb] = useState<boolean>(false);
-    const [stats, setStats] = useState<any | null>(null);
+    const [stats, setStats] = useState<HousingStats | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -33,18 +40,18 @@ const Analytics = () => {
         formData.append('save_to_db', saveToDb ? '1' : '0');
 
         try {
-            const response = await axios.post('/api/upload', formData, {
+            const response = await axios.post<{ data: HousingStats }>('/api/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
 
             setStats(response.data.data);
-        } catch (err: any) {
-            if (err.response?.data?.message) {
-                setError(err.response.data.message);
+        } catch (err: unknown) {
+            if (axios.isAxiosError(err)) {
+                setError(err.response?.data?.message || 'Something went wrong while uploading the file.');
             } else {
-                setError('Something went wrong while uploading the file.');
+                setError('Unexpected error occurred.');
             }
         } finally {
             setLoading(false);
