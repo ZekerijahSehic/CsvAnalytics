@@ -2,19 +2,22 @@
 
 CSV Analytics is a Laravel + React single-page application that parses housing data from a CSV file and optionally saves it to the database. After uploading the file, the app provides insightful statistics including average price, total houses sold, number of crimes in 2011, and the average price per year in the London area.
 
----
-
 <p align="center">
-  <img src="docs/images/img.png" alt="App Screenshot" width="600" />
+  <img src="docs/images/img_1.png" alt="App Screenshot" width="600" />
 </p>
 
+---
+
 ## CSV Upload Requirements
+
 File format: Only files with the .csv extension are accepted.
 
 CSV structure: The file must contain the following headers in this exact order:
 ```bash
 date,area,average_price,code,houses_sold,no_of_crimes,borough_flag
 ```
+
+---
 
 ## Tech Stack
 
@@ -28,7 +31,7 @@ date,area,average_price,code,houses_sold,no_of_crimes,borough_flag
 
 ## Setup Instructions
 ```bash
-git@github.com:YourUsername/CsvAnalytics.git
+git clone git@github.com:YourUsername/CsvAnalytics.git
 ```
 
 ```bash
@@ -76,8 +79,9 @@ php artisan serve
 npm run dev
 ```
 
-## Running Tests
+---
 
+## Running Tests
 
 Setup .env.testing file
 ```bash
@@ -93,7 +97,7 @@ DB_DATABASE=:memory:
 
 Run the test
 ```bash
-php artisan docs
+php artisan test
 ```
 
 
