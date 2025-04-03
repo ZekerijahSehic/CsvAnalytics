@@ -21,6 +21,8 @@ return new class extends Migration
             $table->float('no_of_crimes')->nullable();
             $table->boolean('borough_flag')->nullable();
             $table->timestamps();
+
+            $table->unique(['date', 'area', 'code'], 'unique_date_area_code');
         });
     }
 

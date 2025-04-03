@@ -20,7 +20,7 @@ class HousingDataRepository
     {
         $chunks = $dtos->map->toArray()->chunk(500);
         foreach ($chunks as $chunk) {
-            HousingData::insert($chunk->all());
+            HousingData::insertOrIgnore($chunk->all());
         }
     }
 }
