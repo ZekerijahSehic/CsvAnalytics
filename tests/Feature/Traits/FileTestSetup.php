@@ -19,8 +19,7 @@ trait FileTestSetup
             $filePath = base_path('tests/Fixtures/wrong_test_housing_data.csv');
         } else if ($emptyFile) {
             $filePath = base_path('tests/Fixtures/test_housing_data_empty.csv');
-        }
-        else {
+        } else {
             $filePath = base_path('tests/Fixtures/wrong_file_format.txt');
         }
 
