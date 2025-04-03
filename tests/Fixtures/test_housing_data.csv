@@ -1,0 +1,6 @@
+date,area,average_price,code,houses_sold,no_of_crimes,borough_flag
+2011-01-01,london,300000,E09000001,10,10.0,0
+2011-02-01,london,350000,E09000001,15,150.0,0
+2012-01-01,london,400000,E09000001,20,200.0,1
+2019-11-01,east of england,289917,E12000006,7882,,0
+2007-04-01,south east,225548,E12000008,1000,,0
